@@ -34,7 +34,7 @@
                     <a class="btn btn-outline-primary" href="index.html">Sign Up</a>
                 </li>
                 <li class="nav-item" id="signOutBtn">
-                    <a class="btn btn-outline-danger" href="#">Sign Out</a>
+                    <a class="btn btn-outline-danger" href="#"><i class="fa-solid fa-sign-out-alt"></i> Sign Out</a>
                 </li>
             </ul>
         </div>
@@ -76,10 +76,8 @@
             articleForm.style.display = 'none';
         }
     });
-        // التحقق من تسجيل دخول المستخدم
         const userId = localStorage.getItem('userId');
         if (!userId) {
-            // إعادة التوجيه إلى صفحة التسجيل إذا لم يكن المستخدم مسجلًا
             window.location.href = './index.html';
         }
 
@@ -88,7 +86,6 @@
         document.getElementById('newArticleForm').addEventListener('submit', async function(event) {
             event.preventDefault();
             
-            // الحصول على بيانات المدونة من النموذج
             const title = document.getElementById('articleTitle').value;
             const content = document.getElementById('articleContent').value;
             const imageUrl = document.getElementById('articleImageURL').value || 'https://via.placeholder.com/150'; // صورة افتراضية إذا لم يقم المستخدم بإدخال صورة
@@ -96,7 +93,6 @@
             const newArticle = { userId, title, content, imageUrl, createdAt: new Date().toISOString() };
 
             try {
-                // إرسال المدونة الجديدة إلى الـ API
                 const res = await fetch(blogApiUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -107,7 +103,6 @@
                     throw new Error('Failed to publish article');
                 }
 
-                // إعادة تعيين النموذج وعرض رسالة النجاح
                 document.getElementById('newArticleForm').reset();
                 document.getElementById('responseAlert').textContent = 'Article published successfully!';
                 document.getElementById('responseAlert').classList.remove('text-danger');
@@ -120,6 +115,7 @@
         });
     </script>
     	<script src="./script.js"></script>
-
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

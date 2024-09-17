@@ -6,114 +6,129 @@
     <title>Blog || Profile</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-    <link rel="stylesheet" href="./style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/brands.min.css" integrity="sha512-EJp8vMVhYl7tBFE2rgNGb//drnr1+6XKMvTyamMS34YwOEFohhWkGq13tPWnK0FbjSS6D8YoA3n3bZmb3KiUYA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./style.css">
     <style>
-        .blog-style-one {
-            margin-top: 50px;
+        .card {
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            border-radius: 12px; 
-            overflow: hidden;
-            transition: transform 0.3s ease; 
+            border-radius: 12px;
+            margin-bottom: 20px;
         }
-    
+
+        .blog-style-one {
+            transition: transform 0.3s ease;
+        }
+
         .blog-style-one:hover {
             transform: translateY(-5px);
         }
-    
-        .blog-style-one .blog-image {
-            overflow: hidden;
-            border-radius: 12px 12px 0 0; 
-            position: relative;
-        }
-    
-        .blog-style-one .blog-image .category {
-            background-color: #007bff; 
-            color: #fff;
-            font-size: 13px;
-            padding: 7px 20px;
-            position: absolute;
-            right: 20px;
-            top: 20px;
-            border-radius: 30px;
-        }
-    
+
         .blog-style-one .blog-image img {
             width: 100%;
-            -webkit-transition: all 0.2s ease-out 0s;
-            transition: all 0.2s ease-out 0s;
+            transition: all 0.2s ease-out;
         }
-    
+
         .blog-style-one .blog-image:hover img {
-            -webkit-transform: scale(1.1);
             transform: scale(1.1);
         }
-    
-        .blog-style-one .blog-content {
-            padding: 20px;
-            background-color: #ffffff;
-            border-radius: 0 0 12px 12px; 
+
+        .btn-danger {
+            background-color: #dc3545;
+            border: none;
+            transition: background-color 0.3s;
         }
-    
-        @media only screen and (min-width: 768px) and (max-width: 991px) {
-            .blog-style-one .blog-content {
-                padding: 18px;
-            }
+
+        .btn-danger:hover {
+            background-color: #c82333;
         }
-    
-        @media (max-width: 767px) {
-            .blog-style-one .blog-content {
-                padding: 15px;
-            }
+
+        .profile-icon {
+            margin-right: 5px;
         }
-    
-        .blog-style-one .blog-content .blog-title {
-            display: block;
-            margin-bottom: 10px;
+
+        .edit-icon {
+            margin-right: 5px;
         }
-    
-        .blog-style-one .blog-content .blog-title a {
-            font-weight: 600;
-            color: #333; 
-            transition: all 0.3s ease-out;
-            line-height: 1.4;
-        }
-    
-        .blog-style-one .blog-content .blog-title a:hover {
+
+        .article-count {
+            font-size: 18px;
+            font-weight: bold;
+            margin-left: 10px;
             color: #007bff;
         }
-    
-        .blog-style-one .blog-content span {
-            font-size: 14px;
-            line-height: 20px;
-            color: #666; 
-            margin-top: 8px;
-            margin-right: 12px;
-            display: inline-block;
-        }
-    
-        .blog-style-one .blog-content .text {
-            color: #666;
-            margin-top: 16px;
-            font-size: 15px;
-        }
-    
-        .blog-style-one .blog-content .more {
-            text-transform: uppercase;
-            font-weight: 600;
-            color: #007bff;
-            margin-top: 20px;
-            display: inline-block;
-            transition: color 0.3s ease;
-        }
-    
-        .blog-style-one .blog-content .more:hover {
-            color: #0056b3; 
-        }
+.single-blog {
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.single-blog:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
+}
+
+.single-blog .blog-image {
+    height: 180px;
+    overflow: hidden;
+}
+
+.single-blog .blog-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.single-blog:hover .blog-image img {
+    transform: scale(1.1);
+}
+
+.single-blog .blog-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.single-blog .blog-title a {
+    font-size: 18px;
+    font-weight: 600;
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.single-blog .blog-title a:hover {
+    color: #0056b3;
+}
+
+.single-blog .text {
+    font-size: 14px;
+    color: #666;
+    margin-top: 10px;
+}
+
+.single-blog .btn {
+    margin-top: 15px;
+    width: 100%;
+    padding: 10px;
+    background-color: #e74c3c;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+.single-blog .btn:hover {
+    background-color: #c0392b;
+}
+
+.single-blog .btn i {
+    margin-right: 5px;
+}
+
     </style>
-    
 </head>
-<body style="background-color: #eee;">
+<body style="background-color: #f8f9fa;">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="home.html" style="font-size: 24px; font-weight: bold; color: #007bff;">
             <i class="fa-solid fa-blog"></i> Blog
@@ -139,24 +154,35 @@
                     <a class="btn btn-outline-primary" href="index.html">Sign Up</a>
                 </li>
                 <li class="nav-item" id="signOutBtn">
-                    <a class="btn btn-outline-danger" href="#">Sign Out</a>
+                    <a class="btn btn-outline-danger" href="#"><i class="fa-solid fa-sign-out-alt"></i> Sign Out</a>
                 </li>
             </ul>
         </div>
     </nav>
     
     <div class="container mt-5">
-        <div class="card p-4 shadow-sm">
-            <h1 class="text-center mb-4">Profile</h1>
-            <h5 class="text-center mb-4">Hello <b id="displayUserName"></b>, how are you today?</h5>
-            <div id="userInfo" class="mb-4">
-                <p><strong>Name:</strong> <span id="displayUserName2"></span></p>
-                <p><strong>Email:</strong> <span id="displayUserEmail"></span></p>
+        <div class="row">
+            <!-- كرت معلومات الحساب -->
+            <div class="col-lg-4">
+                <div class="card p-4 shadow-sm">
+                    <h3 class="text-center mb-4"><i class="fa-solid fa-user profile-icon"></i>Profile</h3>
+                    <p><strong><i class="fa-solid fa-user edit-icon"></i>Name:</strong> <span id="displayUserName"></span></p>
+                    <p><strong><i class="fa-solid fa-envelope edit-icon"></i>Email:</strong> <span id="displayUserEmail"></span></p>
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal">Edit</button>
-                <div id="updateAlert" class="form-text text-danger mt-3"></div>
+
+                    <div id="updateAlert" class="form-text text-danger mt-3"></div>
+                </div>
             </div>
-            <h2 class="mb-4">Your Articles</h2>
-            <div id="userBlogs" class="row justify-content-center">
+
+            <!-- كرت المدونات -->
+            <div class="col-lg-8">
+                <div class="card p-4 shadow-sm">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h3><i class="fa-solid fa-pen-nib"></i> Your Articles<span class="article-count" id="articleCount"></span></h3>
+                        
+                    </div>
+                    <div id="userBlogs" class="row justify-content-center"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -168,7 +194,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="updateModalLabel">Update Profile</h5>
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-                        <i class="fa-solid fa-xmark"></i>
+                        <i class="fa-solid fa-times"></i>
                     </button>
                 </div>
                 <div class="modal-body">
@@ -181,15 +207,15 @@
                             <label for="userEmail">Email</label>
                             <input type="email" id="userEmail" class="form-control" required>
                         </div>
-                        <button type="submit" class="btn btn-primary mt-3">Save changes</button>
+                        <button type="submit" class="btn btn-primary mt-3"><i class="fa-solid fa-save"></i> Save changes</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    <script src="./script.js"></script>
 
     <script>
-        
         const userId = localStorage.getItem('userId');
         const userApiUrl = `https://66e9516787e417609448f32c.mockapi.io/uesr/${userId}`;
         const blogApiUrl = `https://66e9516787e417609448f32c.mockapi.io/blogs`;
@@ -203,7 +229,6 @@
                 const user = await res.json();
 
                 document.getElementById('displayUserName').textContent = user.userName;
-                document.getElementById('displayUserName2').textContent = user.userName;
                 document.getElementById('displayUserEmail').textContent = user.userEmail;
 
                 document.getElementById('userName').value = user.userName;
@@ -215,7 +240,6 @@
             }
         }
 
-        // تحديث بيانات المستخدم
         document.getElementById('updateUserForm').addEventListener('submit', async function(event) {
             event.preventDefault();
             
@@ -233,16 +257,13 @@
                     throw new Error('Failed to update user data');
                 }
 
-                // تحديث العرض في الصفحة بعد التعديل
                 document.getElementById('displayUserName').textContent = userName;
-                document.getElementById('displayUserName2').textContent = userName;
                 document.getElementById('displayUserEmail').textContent = userEmail;
 
                 document.getElementById('updateAlert').textContent = 'Profile updated successfully!';
                 document.getElementById('updateAlert').classList.remove('text-danger');
                 document.getElementById('updateAlert').classList.add('text-success');
 
-                // إغلاق الـ Modal
                 const modal = bootstrap.Modal.getInstance(document.getElementById('updateModal'));
                 modal.hide();
 
@@ -252,7 +273,6 @@
             }
         });
 
-        // جلب وعرض المدونات الخاصة بالمستخدم
         async function fetchUserBlogs(userId) {
             try {
                 const res = await fetch(blogApiUrl);
@@ -264,25 +284,24 @@
                 const userBlogs = blogs.filter(blog => blog.userId === userId);
                 const userBlogsContainer = document.getElementById('userBlogs');
 
-                // مسح المحتوى الحالي
                 userBlogsContainer.innerHTML = '';
+
+                document.getElementById('articleCount').textContent = `(${userBlogs.length})`;
 
                 userBlogs.forEach(blog => {
                     const blogCard = `
-                        <div class="col-lg-3 col-md-6 col-sm-10 mb-4">
+                        <div class="col-lg-4 col-md-6 col-sm-10 mb-4">
                             <div class="single-blog blog-style-one">
                                 <div class="blog-image">
                                     <a href="javascript:void(0)">
                                         <img src="${blog.imageUrl}" alt="Blog" />
                                     </a>
                                 </div>
-                                <div class="blog-content" style="background-color: #eee;">
+                                <div class="blog-content" style="background-color: #f8f9fa;">
                                     <h5 class="blog-title">
                                         <a href="javascript:void(0)">${blog.title}</a>
                                     </h5>
-                                    <span><i class="lni lni-calendar"></i> ${new Date(blog.createdAt).toLocaleDateString()}</span>
-                                    <p class="text">${blog.content.substring(0, 100)}...</p>
-                                    <button class="btn btn-danger mt-2" onclick="deleteBlog('${blog.id}')">Delete</button>
+                                    <button class="btn btn-danger mt-2" onclick="deleteBlog('${blog.id}')"><i class="fa-solid fa-trash-alt"></i> Delete</button>
                                 </div>
                             </div>
                         </div>
@@ -319,6 +338,5 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
     <script src="./script.js"></script>
-
 </body>
 </html>

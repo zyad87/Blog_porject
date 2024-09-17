@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog || Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <style>
+      .blog-style-one {
+          margin-top: 50px;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* ظل للبطاقات */
+          border-radius: 12px; /* زوايا مستديرة للبطاقة */
+          overflow: hidden;
+          transition: transform 0.3s ease; /* تأثير الحركة */
+      }
+  
+      .blog-style-one:hover {
+          transform: translateY(-5px); /* حركة البطاقة عند التمرير */
+      }
+  
+      .blog-style-one .blog-image {
+          overflow: hidden;
+          border-radius: 12px 12px 0 0; /* زوايا مستديرة أعلى البطاقة */
+          position: relative;
+      }
+  
+      .blog-style-one .blog-image .category {
+          background-color: #007bff; /* اللون الأساسي */
+          color: #fff;
+          font-size: 13px;
+          padding: 7px 20px;
+          position: absolute;
+          right: 20px;
+          top: 20px;
+          border-radius: 30px;
+      }
+  
+      .blog-style-one .blog-image img {
+          width: 100%;
+          -webkit-transition: all 0.2s ease-out 0s;
+          transition: all 0.2s ease-out 0s;
+      }
+  
+      .blog-style-one .blog-image:hover img {
+          -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+      }
+  
+      .blog-style-one .blog-content {
+          padding: 20px;
+          background-color: #ffffff;
+          border-radius: 0 0 12px 12px; /* زوايا مستديرة أسفل البطاقة */
+      }
+  
+      @media only screen and (min-width: 768px) and (max-width: 991px) {
+          .blog-style-one .blog-content {
+              padding: 18px;
+          }
+      }
+  
+      @media (max-width: 767px) {
+          .blog-style-one .blog-content {
+              padding: 15px;
+          }
+      }
+  
+      .blog-style-one .blog-content .blog-title {
+          display: block;
+          margin-bottom: 10px;
+      }
+  
+      .blog-style-one .blog-content .blog-title a {
+          font-weight: 600;
+          color: #333; /* اللون الافتراضي للنص */
+          transition: all 0.3s ease-out;
+          line-height: 1.4;
+      }
+  
+      .blog-style-one .blog-content .blog-title a:hover {
+          color: #007bff; /* اللون الأساسي عند التمرير */
+      }
+  
+      .blog-style-one .blog-content span {
+          font-size: 14px;
+          line-height: 20px;
+          color: #666; /* لون النص */
+          margin-top: 8px;
+          margin-right: 12px;
+          display: inline-block;
+      }
+  
+      .blog-style-one .blog-content .text {
+          color: #666;
+          margin-top: 16px;
+          font-size: 15px;
+      }
+  
+      .blog-style-one .blog-content .more {
+          text-transform: uppercase;
+          font-weight: 600;
+          color: #007bff;
+          margin-top: 20px;
+          display: inline-block;
+          transition: color 0.3s ease;
+      }
+  
+      .blog-style-one .blog-content .more:hover {
+          color: #0056b3; /* لون أغمق عند التمرير */
+      }
+  </style>
+  
+</head>
+<body style="background-color: #eee;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="home.html" style="font-size: 24px; font-weight: bold; color: #007bff;">
+            <i class="fa-solid fa-blog"></i> Blog
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="home.html"><i class="fa-solid fa-home"></i> Home</a>
+                </li>
+                <li class="nav-item" id="newArticleBtn">
+                    <a class="nav-link" href="new-article.html"><i class="fa-solid fa-plus"></i> New Article</a>
+                </li>
+                <li class="nav-item" id="profileBtn">
+                  <a class="nav-link" href="profile.html"><i class="fa-solid fa-user"></i> <span id="profileText">Profile</span></a>
+              </li>
+                <li class="nav-item" id="loginBtn">
+                    <a class="btn" href="login.html" style="font-weight: bold;">Login</a>
+                </li>
+                <li class="nav-item" id="signUpBtn">
+                    <a class="btn btn-outline-primary" href="index.html">Sign Up</a>
+                </li>
+                <li class="nav-item" id="signOutBtn">
+                    <a class="btn btn-outline-danger" href="#">Sign Out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+
+    <section class="blog-area pb-5">
+        <div class="container mt-4">
+            <div id="notLoggedInAlert" class="alert alert-warning text-center mt-3" style="display: none;">
+                You cannot access the profile or create a blog because you are not logged in.
+            </div>
+            <h2 class=" mb-4">All Blogs</h2>
+            <div id="cardsSection" class="row justify-content-center">
+            </div>
+        </div>
+    </section>
+
+    <script>
+            document.addEventListener('DOMContentLoaded', function () {
+        const userId = localStorage.getItem('userId');
+        const notLoggedInAlert = document.getElementById('notLoggedInAlert');
+
+        if (!userId) {
+            notLoggedInAlert.style.display = 'block';
+        }
+    });
+        const blogApiUrl = 'https://66e9516787e417609448f32c.mockapi.io/blogs'; // رابط API المدونات
+        const userApiUrl = 'https://66e9516787e417609448f32c.mockapi.io/uesr'; // رابط API المستخدمين
+
+        // دالة لجلب اسم المستخدم بناءً على userId
+        async function getUserName(userId) {
+            try {
+                const res = await fetch(`${userApiUrl}/${userId}`);
+                if (!res.ok) {
+                    throw new Error('Failed to fetch user data');
+                }
+                const user = await res.json();
+                return user.userName;
+            } catch (error) {
+                console.error('Error fetching user:', error);
+                return 'Unknown User'; // في حال حدوث خطأ
+            }
+        }
+
+        async function fetchBlogs() {
+            try {
+                const res = await fetch(blogApiUrl);
+                if (!res.ok) {
+                    throw new Error('Failed to fetch blogs');
+                }
+                
+                const blogs = await res.json();
+                const cardsSection = document.getElementById('cardsSection');
+                
+                // مسح المحتوى الحالي
+                cardsSection.innerHTML = '';
+
+                // إنشاء كروت المدونات بناءً على البيانات المستلمة
+                for (const blog of blogs) {
+                    // جلب اسم المستخدم بناءً على userId
+                    const userName = await getUserName(blog.userId);
+                    
+                    const blogCard = `
+                        <div class="col-lg-3 col-md-6 col-sm-10">
+                            <div class="single-blog blog-style-one">
+                                <div class="blog-image">
+                                    <a href="javascript:void(0)">
+                                        <img src="${blog.imageUrl}" alt="Blog" />
+                                    </a>
+                                </div>
+                                <div class="blog-content" style="background-color: white;">
+                                    <h5 class="blog-title">
+                                        <a href="javascript:void(0)">${blog.title}</a>
+                                    </h5>
+                                    <span><i class="lni lni-calendar"></i> ${new Date(blog.createdAt).toLocaleDateString()}</span>
+                                    <span><i class="lni lni-user"></i> ${userName}</span>
+                                    <p class="text">${blog.content.substring(0, 100)}...</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    cardsSection.insertAdjacentHTML('beforeend', blogCard);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        // جلب وعرض المدونات عند تحميل الصفحة
+        window.onload = fetchBlogs;
+    </script>
+    	<script src="./script.js"></script>
+
+</body>
+</html>

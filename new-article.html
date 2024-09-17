@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog || New Article</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+    <link rel="stylesheet" href="./style.css" />
+</head>
+<body style="background-color: #eee;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="home.html" style="font-size: 24px; font-weight: bold; color: #007bff;">
+            <i class="fa-solid fa-blog"></i> Blog
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="home.html"><i class="fa-solid fa-home"></i> Home</a>
+                </li>
+                <li class="nav-item" id="newArticleBtn">
+                    <a class="nav-link" href="new-article.html"><i class="fa-solid fa-plus"></i> New Article</a>
+                </li>
+                <li class="nav-item" id="profileBtn">
+                    <a class="nav-link" href="profile.html"><i class="fa-solid fa-user"></i> <span id="profileText">Profile</span></a>
+                </li>
+                <li class="nav-item" id="loginBtn">
+                    <a class="btn" href="login.html" style="font-weight: bold;">Login</a>
+                </li>
+                <li class="nav-item" id="signUpBtn">
+                    <a class="btn btn-outline-primary" href="index.html">Sign Up</a>
+                </li>
+                <li class="nav-item" id="signOutBtn">
+                    <a class="btn btn-outline-danger" href="#">Sign Out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container mt-5">
+        <div id="loginRequiredAlert" class="alert alert-danger text-center mt-3" style="display: none;">
+            You must be logged in to add a new article.
+        </div>
+        <h1 class="text-center mb-4">Publish a New Article</h1>
+        <div class="card p-4 shadow-sm">
+            <form id="newArticleForm">
+                <div class="form-group">
+                    <label for="articleTitle">Article Title</label>
+                    <input type="text" class="form-control" id="articleTitle" placeholder="Enter article title" required>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="articleContent">Article Content</label>
+                    <textarea class="form-control" id="articleContent" rows="6" placeholder="Write your article here..." required></textarea>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="articleImageURL">Image URL (optional)</label>
+                    <input type="text" class="form-control" id="articleImageURL" placeholder="Enter image URL">
+                </div>
+                <button type="submit" class="btn btn-primary w-100 mt-4">Publish</button>
+                <div id="responseAlert" class="form-text text-danger mt-3"></div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+            document.addEventListener('DOMContentLoaded', function () {
+        const userId = localStorage.getItem('userId');
+        const loginRequiredAlert = document.getElementById('loginRequiredAlert');
+        const articleForm = document.getElementById('newArticleForm');
+
+        if (!userId) {
+            loginRequiredAlert.style.display = 'block';
+            articleForm.style.display = 'none';
+        }
+    });
+        // التحقق من تسجيل دخول المستخدم
+        const userId = localStorage.getItem('userId');
+        if (!userId) {
+            // إعادة التوجيه إلى صفحة التسجيل إذا لم يكن المستخدم مسجلًا
+            window.location.href = './index.html';
+        }
+
+        const blogApiUrl = 'https://66e9516787e417609448f32c.mockapi.io/blogs'; // رابط API المدونات
+
+        document.getElementById('newArticleForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            
+            // الحصول على بيانات المدونة من النموذج
+            const title = document.getElementById('articleTitle').value;
+            const content = document.getElementById('articleContent').value;
+            const imageUrl = document.getElementById('articleImageURL').value || 'https://via.placeholder.com/150'; // صورة افتراضية إذا لم يقم المستخدم بإدخال صورة
+
+            const newArticle = { userId, title, content, imageUrl, createdAt: new Date().toISOString() };
+
+            try {
+                // إرسال المدونة الجديدة إلى الـ API
+                const res = await fetch(blogApiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(newArticle)
+                });
+
+                if (!res.ok) {
+                    throw new Error('Failed to publish article');
+                }
+
+                // إعادة تعيين النموذج وعرض رسالة النجاح
+                document.getElementById('newArticleForm').reset();
+                document.getElementById('responseAlert').textContent = 'Article published successfully!';
+                document.getElementById('responseAlert').classList.remove('text-danger');
+                document.getElementById('responseAlert').classList.add('text-success');
+
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('responseAlert').textContent = 'Failed to publish article. Please try again.';
+            }
+        });
+    </script>
+    	<script src="./script.js"></script>
+
+</body>
+</html>

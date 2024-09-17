@@ -1,53 +1,48 @@
-/* استهداف الجسم (body) بالكامل */
 body:not(.log) {
-    background-color: #f4f4f9; /* لون خلفية هادئ */
-    font-family: 'Poppins', Arial, sans-serif; /* خط عصري */
+    background-color: #f4f4f9; 
+    font-family: 'Poppins', Arial, sans-serif;
     background-color: #e5e5f7;
-    background-image: repeating-radial-gradient(circle at 0 0, transparent 0, #e5e5f7 40px), repeating-linear-gradient(#d3d5ff55, #b4b8ff);
-    color: #333; /* لون النص الافتراضي */
+    background: linear-gradient(135deg, #e0e7ff, #f4f4f9);
+        color: #333; 
     line-height: 1.6;
 }
 
-/* تصميم الـ Navbar */
 .navbar {
     padding: 15px 30px;
-    background-color: #ffffff; /* خلفية بيضاء للقائمة */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* ظل خفيف */
-    border-bottom: 2px solid #007bff; /* شريط أزرق أسفل القائمة */
+    background-color: #ffffff; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    border-bottom: 2px solid #007bff; 
 }
 
 .nav-link {
     font-size: 16px;
     margin: 0 15px;
-    color: #007bff !important; /* لون النص للأزرار */
-    transition: color 0.3s ease; /* تأثير التغيير في اللون */
+    color: #007bff !important; 
+    transition: color 0.3s ease; 
 }
 
 .nav-link:hover {
-    color: #0056b3 !important; /* لون عند التمرير */
+    color: #0056b3 !important; 
 }
 
-/* البطاقة (Card) */
 .card {
-    border-radius: 15px; /* زوايا مستديرة أكثر */
-    border: none; /* إزالة الحدود الافتراضية */
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* ظل أكبر */
-    background-color: #ffffff; /* خلفية بيضاء للبطاقة */
-    overflow: hidden; /* لإخفاء الأجزاء الزائدة */
+    border-radius: 15px; 
+    border: none; 
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); 
+    background-color: #ffffff;
+    overflow: hidden; 
 }
 
-/* العنوان في البطاقة */
 .card h2 {
-    color: #333; /* لون نص العنوان */
+    color: #333; 
     font-weight: 600;
     font-size: 1.5rem;
 }
 
-/* الحقول */
 .form-control {
-    border-radius: 8px; /* زوايا مستديرة للحقول */
-    border: 1px solid #ccc; /* حدود بسيطة للحقول */
-    padding: 12px 15px; /* مساحة داخلية أكبر */
+    border-radius: 8px; 
+    border: 1px solid #ccc; 
+    padding: 12px 15px; 
     font-size: 16px;
 }
 
